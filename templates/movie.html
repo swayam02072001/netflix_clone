@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Clone|| {{movie_details.title}}</title>
+    <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/style.css' %}" />
+    <link rel="icon" href="https://assets.nflxext.com/us/ffe/siteui/common/icons/nficon2016.png">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        .footer{
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #141414;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            justify-items: center;
+        }
+        .footer .footer-iconTop{
+            margin-left: 1rem;
+        }
+        #dropdownMenu{
+            background-color:black;
+            
+        }
+        #dropdownMenu a{
+            color: aliceblue;
+        }
+    </style>
+</head>
+
+<body class="bg-blue-900 text-white" style="background-color: #181818;">
+
+    <!-- Navbar -->
+    <header class="p-5 flex justify-between items-center">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png" height="30" alt="Netflix Logo" width="110">
+        <nav class="flex space-x-5">
+            <span><a href="{% url 'app:index' %}"><i class="fa-solid fa-house"></i></i> Home</a></span>
+            
+            <div class="dropdown">
+                <span id="dropdownMenuButton" class="cursor-pointer"><i class="fa-solid fa-user-gear"></i> Genres ▼</span>
+                
+                <div id="dropdownMenu" class="dropdown-content hidden">
+                    {% for Genre in genre  %}
+                    <ul><a href="{% url 'app:genre' Genre %}"> {{Genre}}</a></ul>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <span><a href="{% url 'app:my_list' %}"><i class="fa-solid fa-list"></i> My List</a></span>
+        </nav>
+        <div class="flex space-x-5 items-center">
+            <input type="search" placeholder="Search" class="bg-gray-700 p-2 rounded">
+            <button class="bg-red-600 text-white p-2 rounded hover:bg-red-500">Search</button>
+            <div class="relative">
+                <a href="{% url 'app:logout' %}" class="block p-2">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <hr>
+    <!-- Main Content -->
+    <div class="container mx-auto mt-10">
+        <!-- Movie Title and Back Button -->
+        <div class="flex items-center justify-between">
+            <h2 class="text-3xl font-semibold">{{movie_details.title}}</h2>
+            <a href="{% url 'app:index' %}" class="text-gray-400 hover:text-white">← Back to movies</a>
+        </div>
+
+        <div class="mt-8">
+            <video class="w-full h-auto" controls>
+                <source src="{{movie_details.video.url}}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+
+        <!-- Movie Description -->
+        <div class="mt-6">
+            <h3 class="text-xl font-semibold mb-2">About the Movie</h3>
+            <p>
+                {{movie_details.description}}
+            </p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-text">
+            <p>Copyright &copy; 2023 by Nihal | All Rights Reserved.</p>
+        </div>
+
+        <div class="footer-iconTop">
+            <a href="#"><i class="fa-solid fa-arrow-up"></i></i></a>
+        </div>
+    </footer>
+
+</body>
+
+</html>

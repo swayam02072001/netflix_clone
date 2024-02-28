@@ -1,0 +1,171 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/login.css' %}" />
+    <link rel="icon" href="https://assets.nflxext.com/us/ffe/siteui/common/icons/nficon2016.png">
+    <style>
+        body{
+            background-image: url('{% static "img/netflix1.jpg" %}');
+            background-size: cover;
+            position: relative; /* Ensure the body acts as the relative positioning context */
+            margin-top: 0; /* Remove default margin */
+            padding-top: 0; /* Remove default padding */
+            min-height: 100vh; /* Ensure the body covers the full viewport height */
+        }
+        h5{
+            color: red;
+        }
+
+        /* Make username and password fields transparent */
+        input[type="email"],
+        input[type="text"],
+        input[type="password"] {
+            background-color: transparent;
+            border: none;
+            border-bottom: 2px solid white; /* Add an underline effect */
+            color: white;
+            margin-bottom: 20px; /* Add some spacing */
+            padding: 10px; /* Adjust padding */
+            width: 100%;
+            box-sizing: border-box;
+            outline: none; /* Remove default outline */
+        }
+
+        /* Style placeholder text */
+        input[type="text"]::placeholder,
+        input[type="password"]::placeholder {
+            color: white;
+            opacity: 0.7; /* Adjust placeholder opacity */
+        }
+
+        /* Remove outline on focus */
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            border-bottom: 2px solid red; /* Change border color on focus */
+        }
+
+        /* Additional styling for the 'OR', 'Sign In Code', and 'Forgot Password' links */
+        .additional-links {
+            color: white;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .additional-links a {
+            color: red;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        /* Style for Netflix logo */
+        .netflix-logo {
+            position: absolute;
+            top: 20px;
+            left: 300px;
+            width: 130px; /* Adjust size as needed */
+            z-index: 999; /* Ensure the logo appears above other content */
+        }
+
+        /* Style for transparent footer */
+        footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Transparent black color */
+            color: white;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex; /* Use flexbox for layout */
+            justify-content: space-around; /* Align items with space around */
+        }
+
+        /* Style for transparent signup container */
+        .signup-container {
+            background-color: rgba(0, 0, 0, 0.5); /* Transparent black color */
+            padding: 55px;
+            border-radius: 10px; /* Add some border radius */
+            box-sizing: border-box;
+            width: 340px; /* Set width as needed */
+            margin: 0 auto; /* Center the container horizontally */
+            text-align: center;
+        }
+    </style>
+    
+</head>
+<body>
+
+    <!-- Netflix logo -->
+    <img src="{% static 'img/netflix_logo.png' %}" alt="Netflix Logo" class="netflix-logo">
+
+    <div class="bg-image">
+        <div class="signup-container">
+            <h1>Signup</h1>
+            <h2>Unlimited movies, TV shows, and more.</h2>
+    
+            <div>
+                
+                {% for message in messages %}
+                <h5>{{message}}</h5>
+                {% endfor %}
+            </div>
+    
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input type="email" name="email" placeholder="Email address" />
+                <input type="text" name="username" placeholder="Username" />
+                <input type="password" name="password" placeholder="Password" />
+                <input type="password" name="password2" placeholder="Repeat Password" />
+                <button style="color:white" type="submit" class="signup-btn">Get Started ></button>
+            </form>
+            <div class="help-text" align="center">
+                <span>Ready to watch? Enter your email to create or restart your membership.</span>
+                <br>
+                <br>
+                <span>Already have an account? <a href="{% url 'app:login' %}">Login</a></span>
+            </div>
+        </div>
+    </div>
+    <!-- Transparent footer -->
+    <footer>
+        <table>
+            <div>
+                Questions? Call: 000-800-919-1694
+            </div>
+            <div>
+                Help Centre
+            </div>
+            <tr>
+                FAQ
+            </tr>
+            <div>
+                Terms of Use
+            </div>
+            <div>
+                Privacy
+            </div>
+            <div>
+                Cookie Preferences
+            </div>
+            <div>
+                Corporate Information
+            </div>
+
+        </table>
+        
+    </footer>
+
+
+</body>
+</html>
+
+
+
+
