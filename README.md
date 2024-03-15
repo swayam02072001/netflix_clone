@@ -34,4 +34,13 @@ This is a Netflix clone project created as a practice project to enhance my web 
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/netflix-clone.git
+git clone https://github.com/swayam02072001/netflix-clone.git
+```
+## Contributing
+
+Contributions are welcome! Feel free to open an issue or submit a pull request with any improvements or additional features.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+---
